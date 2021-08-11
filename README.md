@@ -4,7 +4,7 @@
 
 0. install needed packages
    `py -m pip install PyPDF2` on Windows
-1. fetch codes from the remote repository
+1. fetch codes from [here](https://github.com/payashi/file-cropper/blob/main/pdf_cropper/main.py)
 
 2. arrange files as below
 
@@ -35,7 +35,7 @@
 0. install needed packages
    `py -m pip install pydicom matplotlib numpy pylibjpeg` on Windows
 
-1. fetch codes from the remote repository
+1. fetch codes from [here](https://github.com/payashi/file-cropper/blob/main/dcm_cropper/main.py)
 
 2. arrange files as below
 
