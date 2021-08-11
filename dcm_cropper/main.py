@@ -88,4 +88,3 @@ if __name__ == "__main__":
     )
     for file in sorted(files):
         crop_dcm(file)
-        break
