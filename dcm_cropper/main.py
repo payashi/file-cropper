@@ -7,10 +7,10 @@ import pydicom
 
 DIR_NAME = 'dir01'
 # by dot
-UPPER = 100
-LOWER = 0
-LEFT = 0
-RIGHT = 0
+UPPER = 80
+LOWER = 50
+LEFT = 140
+RIGHT = 140
 
 dcm_dist = os.path.join(os.path.dirname(__file__), 'dcm')
 png_dist = os.path.join(os.path.dirname(__file__), 'png')
@@ -26,7 +26,6 @@ def crop_dcm(file: str):
 
     ds = pydicom.dcmread(file)
 
-    # if needed
     ds.PhotometricInterpretation = 'YBR_FULL'
 
     print(f"{os.path.basename(file)} was encoded as {ds.file_meta.TransferSyntaxUID.name}")
