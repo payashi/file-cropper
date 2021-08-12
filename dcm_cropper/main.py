@@ -1,37 +1,3 @@
-"""
-0. install needed packages
-    `py -m pip install pydicom matplotlib numpy pylibjpeg` on Windows
-
-1. fetch codes from the remote repository
-
-2. arrange files as below
-    dcm_cropper
-    |-main.py
-    |-dir01
-    | |-file01.dcm
-    | L-file02.dcm
-    |-dir02
-    :
-
-3. run the following command
-    `python3 main.py`
-
-4. get output folders as below
-    dcm_cropper
-    |-main.py
-    :
-    :
-    |-png
-    ||-file01.png
-    |L-file02.png
-    |-npy
-    ||-file01.npy
-    |L-file02.npy
-    L-dcm
-     |-file01.dcm
-     L-file02.dcm
-"""
-
 import glob
 import os
 
@@ -60,19 +26,27 @@ def crop_dcm(file: str):
 
     ds = pydicom.dcmread(file)
 
+    # if needed
+    ds.PhotometricInterpretation = 'YBR_FULL'
+
     print(f"{os.path.basename(file)} was encoded as {ds.file_meta.TransferSyntaxUID.name}")
-    ds.decompress('pylibjpeg')
+    ds.decompress()
+
     pixel = ds.pixel_array
 
-    row, col = pixel.shape
+    if len(pixel.shape)==3:
+        row, col, c = pixel.shape
+    else:
+        row, col = pixel.shape
+
     pixel = pixel[UPPER:row-LOWER, LEFT:col-RIGHT]
 
     ds.PixelData = pixel.tobytes()
-    ds.Rows, ds.Columns = pixel.shape
+    ds.Rows, ds.Columns = pixel.shape[:2]
 
     ds.save_as(dcm_out)
 
-    plt.imshow(pixel, cmap="gray")
+    plt.imshow(pixel)
     plt.savefig(png_out)
 
     np.save(npy_out, pixel)
