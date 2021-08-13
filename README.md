@@ -38,7 +38,7 @@
 
 1. install needed packages
 ```bash
-   py -m pip install pydicom matplotlib numpy pylibjpeg
+   py -m pip install pydicom matplotlib numpy pylibjpeg pylibjpeg-libjpeg
 ```
 
 2. fetch codes from [here](https://github.com/payashi/file-cropper/blob/main/dcm_cropper/main.py)
