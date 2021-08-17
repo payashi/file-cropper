@@ -57,7 +57,7 @@ if __name__ == "__main__":
     os.makedirs(npy_dist, exist_ok=True)
 
     files = glob.glob(
-        os.path.join(os.path.dirname(__file__), DIR_NAME, "*.dcm")
+        os.path.join(os.path.dirname(__file__), DIR_NAME, "*")
     )
     for file in sorted(files):
         crop_dcm(file)
